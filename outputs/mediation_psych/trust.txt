@@ -1,0 +1,43 @@
+
+Mediation/Moderation Analysis 
+Call: psych::mediate(y = Poli_polarization ~ Third_pillar_size + (Trust_ivs), 
+    data = mediation_zscore)
+
+The DV (Y) was  Poli_polarization . The IV (X) was  Third_pillar_size . The mediating variable(s) =  Trust_ivs .
+
+Total effect(c) of  Third_pillar_size  on  Poli_polarization  =  -0.4808   S.E. =  0.1161  t  =  -4.1396  df=  57   with p =  0.0001161
+Direct effect (c') of  Third_pillar_size  on  Poli_polarization  removing  Trust_ivs  =  -0.3206   S.E. =  0.1327  t  =  -2.4153  df=  56   with p =  0.01901
+Indirect effect (ab) of  Third_pillar_size  on  Poli_polarization  through  Trust_ivs   =  -0.1602 
+Mean bootstrapped indirect effect =  -0.1605  with standard error =  0.0852  Lower CI =  -0.3503    Upper CI =  -0.0073
+R = 0.5435 R2 = 0.2953   F = 11.7357 on 2 and 56 DF   p-value:  4.5186e-06 
+
+
+ Full output  
+Call: psych::mediate(y = Poli_polarization ~ Third_pillar_size + (Trust_ivs), 
+    data = mediation_zscore)
+
+Direct effect estimates (traditional regression)    (c') X + M on Y 
+                  Poli_polarization   se     t df   Prob
+Intercept                      0.00 0.11  0.00 56 1.0000
+Third_pillar_size             -0.32 0.13 -2.42 56 0.0190
+Trust_ivs                     -0.30 0.13 -2.26 56 0.0278
+
+R = 0.54 R2 = 0.3   F = 11.74 on 2 and 56 DF   p-value:  5.54e-05 
+
+ Total effect estimates (c) (X on Y) 
+                  Poli_polarization   se     t df     Prob
+Intercept                      0.00 0.12  0.00 57 1.000000
+Third_pillar_size             -0.48 0.12 -4.14 57 0.000116
+
+ 'a'  effect estimates (X on M) 
+                  Trust_ivs   se    t df    Prob
+Intercept              0.00 0.11 0.00 57 1.0e+00
+Third_pillar_size      0.53 0.11 4.77 57 1.3e-05
+
+ 'b'  effect estimates (M on Y controlling for X) 
+          Poli_polarization   se     t df   Prob
+Trust_ivs              -0.3 0.13 -2.26 56 0.0278
+
+ 'ab'  effect estimates (through all  mediators)
+                  Poli_polarization  boot   sd lower upper
+Third_pillar_size             -0.16 -0.16 0.09 -0.35 -0.01

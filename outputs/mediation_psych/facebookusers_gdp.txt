@@ -1,0 +1,52 @@
+
+Mediation/Moderation Analysis 
+Call: psych::mediate(y = Poli_polarization ~ Third_pillar_size + (Facebook_users) + 
+    GDP_Most_Recent, data = mediation_zscore)
+
+The DV (Y) was  Poli_polarization . The IV (X) was  Third_pillar_size GDP_Most_Recent . The mediating variable(s) =  Facebook_users .
+
+Total effect(c) of  Third_pillar_size  on  Poli_polarization  =  -0.5204   S.E. =  0.1158  t  =  -4.4943  df=  56   with p =  3.549e-05
+Direct effect (c') of  Third_pillar_size  on  Poli_polarization  removing  Facebook_users  =  -0.5236   S.E. =  0.1162  t  =  -4.5064  df=  55   with p =  3.488e-05
+Indirect effect (ab) of  Third_pillar_size  on  Poli_polarization  through  Facebook_users   =  0.0031 
+Mean bootstrapped indirect effect =  0.0049  with standard error =  0.0205  Lower CI =  -0.0324    Upper CI =  0.0541
+
+Total effect(c) of  GDP_Most_Recent  on  Poli_polarization  =  0.2132   S.E. =  0.1158  t  =  1.8412  df=  56   with p =  0.07088
+Direct effect (c') of  GDP_Most_Recent  on  Poli_polarization  removing  Facebook_users  =  0.2158   S.E. =  0.1162  t  =  1.8579  df=  55   with p =  0.06853
+Indirect effect (ab) of  GDP_Most_Recent  on  Poli_polarization  through  Facebook_users   =  -0.0026 
+Mean bootstrapped indirect effect =  -0.0394  with standard error =  0.092  Lower CI =  -0.3116    Upper CI =  0.0543
+R = 0.5329 R2 = 0.284   F = 7.2713 on 3 and 55 DF   p-value:  8.9514e-05 
+
+
+ Full output  
+Call: psych::mediate(y = Poli_polarization ~ Third_pillar_size + (Facebook_users) + 
+    GDP_Most_Recent, data = mediation_zscore)
+
+Direct effect estimates (traditional regression)    (c') X + M on Y 
+                  Poli_polarization   se     t df     Prob
+Intercept                      0.00 0.11  0.00 55 1.00e+00
+Third_pillar_size             -0.52 0.12 -4.51 55 3.49e-05
+GDP_Most_Recent                0.22 0.12  1.86 55 6.85e-02
+Facebook_users                 0.09 0.11  0.83 55 4.11e-01
+
+R = 0.53 R2 = 0.28   F = 7.27 on 3 and 55 DF   p-value:  0.000341 
+
+ Total effect estimates (c) (X on Y) 
+                  Poli_polarization   se     t df     Prob
+Intercept                      0.00 0.11  0.00 56 1.00e+00
+Third_pillar_size             -0.52 0.12 -4.49 56 3.55e-05
+GDP_Most_Recent                0.21 0.12  1.84 56 7.09e-02
+
+ 'a'  effect estimates (X on M) 
+                  Facebook_users   se     t df  Prob
+Intercept                   0.00 0.13  0.00 56 1.000
+Third_pillar_size           0.03 0.14  0.24 56 0.808
+GDP_Most_Recent            -0.03 0.14 -0.20 56 0.840
+
+ 'b'  effect estimates (M on Y controlling for X) 
+               Poli_polarization   se    t df  Prob
+Facebook_users              0.09 0.11 0.83 55 0.411
+
+ 'ab'  effect estimates (through all  mediators)
+                  Poli_polarization  boot   sd lower upper
+Third_pillar_size                 0  0.00 0.02 -0.03  0.05
+GDP_Most_Recent                   0 -0.04 0.09 -0.31  0.05

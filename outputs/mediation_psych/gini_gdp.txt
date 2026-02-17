@@ -1,0 +1,52 @@
+
+Mediation/Moderation Analysis 
+Call: psych::mediate(y = Poli_polarization ~ Third_pillar_size + (Gini_index) + 
+    GDP_Most_Recent, data = mediation_zscore)
+
+The DV (Y) was  Poli_polarization . The IV (X) was  Third_pillar_size GDP_Most_Recent . The mediating variable(s) =  Gini_index .
+
+Total effect(c) of  Third_pillar_size  on  Poli_polarization  =  -0.5204   S.E. =  0.1158  t  =  -4.4943  df=  56   with p =  3.549e-05
+Direct effect (c') of  Third_pillar_size  on  Poli_polarization  removing  Gini_index  =  -0.5117   S.E. =  0.1242  t  =  -4.1213  df=  55   with p =  0.000128
+Indirect effect (ab) of  Third_pillar_size  on  Poli_polarization  through  Gini_index   =  -0.0087 
+Mean bootstrapped indirect effect =  -0.0104  with standard error =  0.0406  Lower CI =  -0.1023    Upper CI =  0.0638
+
+Total effect(c) of  GDP_Most_Recent  on  Poli_polarization  =  0.2132   S.E. =  0.1158  t  =  1.8412  df=  56   with p =  0.07088
+Direct effect (c') of  GDP_Most_Recent  on  Poli_polarization  removing  Gini_index  =  0.2092   S.E. =  0.1184  t  =  1.7669  df=  55   with p =  0.08279
+Indirect effect (ab) of  GDP_Most_Recent  on  Poli_polarization  through  Gini_index   =  0.004 
+Mean bootstrapped indirect effect =  0.0078  with standard error =  0.0391  Lower CI =  -0.0565    Upper CI =  0.1057
+R = 0.525 R2 = 0.2756   F = 6.975 on 3 and 55 DF   p-value:  0.00012902 
+
+
+ Full output  
+Call: psych::mediate(y = Poli_polarization ~ Third_pillar_size + (Gini_index) + 
+    GDP_Most_Recent, data = mediation_zscore)
+
+Direct effect estimates (traditional regression)    (c') X + M on Y 
+                  Poli_polarization   se     t df     Prob
+Intercept                      0.00 0.11  0.00 55 1.000000
+Third_pillar_size             -0.51 0.12 -4.12 55 0.000128
+GDP_Most_Recent                0.21 0.12  1.77 55 0.082800
+Gini_index                     0.03 0.12  0.21 55 0.837000
+
+R = 0.52 R2 = 0.28   F = 6.98 on 3 and 55 DF   p-value:  0.000464 
+
+ Total effect estimates (c) (X on Y) 
+                  Poli_polarization   se     t df     Prob
+Intercept                      0.00 0.11  0.00 56 1.00e+00
+Third_pillar_size             -0.52 0.12 -4.49 56 3.55e-05
+GDP_Most_Recent                0.21 0.12  1.84 56 7.09e-02
+
+ 'a'  effect estimates (X on M) 
+                  Gini_index   se     t df   Prob
+Intercept               0.00 0.12  0.00 56 1.0000
+Third_pillar_size      -0.34 0.13 -2.70 56 0.0092
+GDP_Most_Recent         0.16 0.13  1.24 56 0.2190
+
+ 'b'  effect estimates (M on Y controlling for X) 
+           Poli_polarization   se    t df  Prob
+Gini_index              0.03 0.12 0.21 55 0.837
+
+ 'ab'  effect estimates (through all  mediators)
+                  Poli_polarization  boot   sd lower upper
+Third_pillar_size             -0.01 -0.01 0.04 -0.10  0.06
+GDP_Most_Recent                0.00  0.01 0.04 -0.06  0.11

@@ -1,0 +1,43 @@
+
+Mediation/Moderation Analysis 
+Call: psych::mediate(y = Poli_polarization ~ Third_pillar_size + (Facebook_users), 
+    data = mediation_zscore)
+
+The DV (Y) was  Poli_polarization . The IV (X) was  Third_pillar_size . The mediating variable(s) =  Facebook_users .
+
+Total effect(c) of  Third_pillar_size  on  Poli_polarization  =  -0.4808   S.E. =  0.1161  t  =  -4.1396  df=  57   with p =  0.0001161
+Direct effect (c') of  Third_pillar_size  on  Poli_polarization  removing  Facebook_users  =  -0.4833   S.E. =  0.1166  t  =  -4.1442  df=  56   with p =  0.0001165
+Indirect effect (ab) of  Third_pillar_size  on  Poli_polarization  through  Facebook_users   =  0.0025 
+Mean bootstrapped indirect effect =  6e-04  with standard error =  0.0168  Lower CI =  -0.0364    Upper CI =  0.0358
+R = 0.4889 R2 = 0.239   F = 8.7958 on 2 and 56 DF   p-value:  7.1584e-05 
+
+
+ Full output  
+Call: psych::mediate(y = Poli_polarization ~ Third_pillar_size + (Facebook_users), 
+    data = mediation_zscore)
+
+Direct effect estimates (traditional regression)    (c') X + M on Y 
+                  Poli_polarization   se     t df     Prob
+Intercept                      0.00 0.12  0.00 56 1.000000
+Third_pillar_size             -0.48 0.12 -4.14 56 0.000116
+Facebook_users                 0.09 0.12  0.76 56 0.449000
+
+R = 0.49 R2 = 0.24   F = 8.8 on 2 and 56 DF   p-value:  0.000477 
+
+ Total effect estimates (c) (X on Y) 
+                  Poli_polarization   se     t df     Prob
+Intercept                      0.00 0.12  0.00 57 1.000000
+Third_pillar_size             -0.48 0.12 -4.14 57 0.000116
+
+ 'a'  effect estimates (X on M) 
+                  Facebook_users   se    t df  Prob
+Intercept                   0.00 0.13 0.00 57 1.000
+Third_pillar_size           0.03 0.13 0.21 57 0.833
+
+ 'b'  effect estimates (M on Y controlling for X) 
+               Poli_polarization   se    t df  Prob
+Facebook_users              0.09 0.12 0.76 56 0.449
+
+ 'ab'  effect estimates (through all  mediators)
+                  Poli_polarization boot   sd lower upper
+Third_pillar_size                 0    0 0.02 -0.04  0.04

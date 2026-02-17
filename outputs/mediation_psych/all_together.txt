@@ -1,0 +1,85 @@
+
+Mediation/Moderation Analysis 
+Call: psych::mediate(y = Poli_polarization ~ Third_pillar_size + (Trust_ivs) + 
+    (Gini_index) + (Facebook_users) + (Loneliness) + GDP_Most_Recent, 
+    data = mediation_zscore)
+
+The DV (Y) was  Poli_polarization . The IV (X) was  Third_pillar_size GDP_Most_Recent . The mediating variable(s) =  Trust_ivs Gini_index Facebook_users Loneliness .
+
+Total effect(c) of  Third_pillar_size  on  Poli_polarization  =  -0.5204   S.E. =  0.1158  t  =  -4.4943  df=  56   with p =  3.549e-05
+Direct effect (c') of  Third_pillar_size  on  Poli_polarization  removing  Trust_ivs Gini_index Facebook_users Loneliness  =  -0.3346   S.E. =  0.1381  t  =  -2.423  df=  52   with p =  0.01891
+Indirect effect (ab) of  Third_pillar_size  on  Poli_polarization  through  Trust_ivs Gini_index Facebook_users Loneliness   =  -0.1859 
+Mean bootstrapped indirect effect =  -0.1816  with standard error =  0.0986  Lower CI =  -0.39    Upper CI =  3e-04
+
+Total effect(c) of  GDP_Most_Recent  on  Poli_polarization  =  0.2132   S.E. =  0.1158  t  =  1.8412  df=  56   with p =  0.07088
+Direct effect (c') of  GDP_Most_Recent  on  Poli_polarization  removing  Trust_ivs Gini_index Facebook_users Loneliness  =  0.2479   S.E. =  0.1141  t  =  2.1724  df=  52   with p =  0.0344
+Indirect effect (ab) of  GDP_Most_Recent  on  Poli_polarization  through  Trust_ivs Gini_index Facebook_users Loneliness   =  -0.0347 
+Mean bootstrapped indirect effect =  -0.0962  with standard error =  0.1462  Lower CI =  -0.4879    Upper CI =  0.0487
+R = 0.6116 R2 = 0.374   F = 5.1778 on 6 and 52 DF   p-value:  0.00016087 
+
+
+ Full output  
+Call: psych::mediate(y = Poli_polarization ~ Third_pillar_size + (Trust_ivs) + 
+    (Gini_index) + (Facebook_users) + (Loneliness) + GDP_Most_Recent, 
+    data = mediation_zscore)
+
+Direct effect estimates (traditional regression)    (c') X + M on Y 
+                  Poli_polarization   se     t df   Prob
+Intercept                      0.00 0.11  0.00 52 1.0000
+Third_pillar_size             -0.33 0.14 -2.42 52 0.0189
+GDP_Most_Recent                0.25 0.11  2.17 52 0.0344
+Trust_ivs                     -0.20 0.17 -1.17 52 0.2490
+Gini_index                    -0.12 0.13 -0.90 52 0.3720
+Facebook_users                -0.02 0.12 -0.15 52 0.8850
+Loneliness                    -0.24 0.18 -1.37 52 0.1750
+
+R = 0.61 R2 = 0.37   F = 5.18 on 6 and 52 DF   p-value:  0.000307 
+
+ Total effect estimates (c) (X on Y) 
+                  Poli_polarization   se     t df     Prob
+Intercept                      0.00 0.11  0.00 56 1.00e+00
+Third_pillar_size             -0.52 0.12 -4.49 56 3.55e-05
+GDP_Most_Recent                0.21 0.12  1.84 56 7.09e-02
+
+ 'a'  effect estimates (X on M) 
+                  Trust_ivs   se    t df     Prob
+Intercept              0.00 0.11 0.00 56 1.000000
+Third_pillar_size      0.52 0.11 4.57 56 0.000027
+GDP_Most_Recent        0.05 0.11 0.46 56 0.648000
+                  Gini_index   se     t df   Prob
+Intercept               0.00 0.12  0.00 56 1.0000
+Third_pillar_size      -0.34 0.13 -2.70 56 0.0092
+GDP_Most_Recent         0.16 0.13  1.24 56 0.2190
+                  Facebook_users   se     t df  Prob
+Intercept                   0.00 0.13  0.00 56 1.000
+Third_pillar_size           0.03 0.14  0.24 56 0.808
+GDP_Most_Recent            -0.03 0.14 -0.20 56 0.840
+                  Loneliness   se    t df     Prob
+Intercept               0.00 0.12 0.00 56 1.000000
+Third_pillar_size       0.49 0.12 4.15 56 0.000113
+GDP_Most_Recent         0.03 0.12 0.22 56 0.825000
+
+ 'b'  effect estimates (M on Y controlling for X) 
+               Poli_polarization   se     t df  Prob
+Trust_ivs                  -0.20 0.17 -1.17 52 0.249
+Gini_index                 -0.12 0.13 -0.90 52 0.372
+Facebook_users             -0.02 0.12 -0.15 52 0.885
+Loneliness                 -0.24 0.18 -1.37 52 0.175
+
+ 'ab'  effect estimates (through all  mediators)
+                  Poli_polarization  boot   sd lower upper
+Third_pillar_size             -0.19 -0.18 0.10 -0.39  0.00
+GDP_Most_Recent               -0.03 -0.10 0.15 -0.49  0.05
+
+ 'ab' effects estimates for each mediator for Poli_polarization 
+                                  boot   sd lower upper
+Third_pillar_size                -0.18 0.10 -0.39  0.00
+GDP_Most_Recent                  -0.10 0.15 -0.49  0.05
+Trust_ivs*Third_pillar_size      -0.11 0.09 -0.30  0.07
+Trust_ivs*GDP_Most_Recent        -0.03 0.06 -0.21  0.04
+Gini_index*Third_pillar_size      0.05 0.04 -0.03  0.15
+Gini_index*GDP_Most_Recent       -0.03 0.06 -0.18  0.02
+Facebook_users*Third_pillar_size  0.00 0.02 -0.04  0.04
+Facebook_users*GDP_Most_Recent   -0.01 0.08 -0.21  0.18
+Loneliness*Third_pillar_size     -0.12 0.09 -0.33  0.05
+Loneliness*GDP_Most_Recent       -0.03 0.07 -0.21  0.04

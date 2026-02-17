@@ -1,0 +1,19 @@
+
+Call:
+lm(formula = Poli_polarization ~ Third_pillar_size, data = pol_lower)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-28.876 -11.095  -1.071  12.597  32.862 
+
+Coefficients:
+                  Estimate Std. Error t value Pr(>|t|)    
+(Intercept)         72.228      6.239  11.577 4.36e-15 ***
+Third_pillar_size   -3.076      1.884  -1.633    0.109    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 15.86 on 45 degrees of freedom
+Multiple R-squared:  0.05595,	Adjusted R-squared:  0.03497 
+F-statistic: 2.667 on 1 and 45 DF,  p-value: 0.1094
+

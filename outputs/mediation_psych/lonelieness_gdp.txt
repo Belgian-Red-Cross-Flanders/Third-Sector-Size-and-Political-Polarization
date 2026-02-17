@@ -1,0 +1,52 @@
+
+Mediation/Moderation Analysis 
+Call: psych::mediate(y = Poli_polarization ~ Third_pillar_size + (Loneliness) + 
+    GDP_Most_Recent, data = mediation_zscore)
+
+The DV (Y) was  Poli_polarization . The IV (X) was  Third_pillar_size GDP_Most_Recent . The mediating variable(s) =  Loneliness .
+
+Total effect(c) of  Third_pillar_size  on  Poli_polarization  =  -0.5204   S.E. =  0.1158  t  =  -4.4943  df=  56   with p =  3.549e-05
+Direct effect (c') of  Third_pillar_size  on  Poli_polarization  removing  Loneliness  =  -0.3655   S.E. =  0.1265  t  =  -2.8894  df=  55   with p =  0.005513
+Indirect effect (ab) of  Third_pillar_size  on  Poli_polarization  through  Loneliness   =  -0.1549 
+Mean bootstrapped indirect effect =  -0.1546  with standard error =  0.0729  Lower CI =  -0.3165    Upper CI =  -0.0281
+
+Total effect(c) of  GDP_Most_Recent  on  Poli_polarization  =  0.2132   S.E. =  0.1158  t  =  1.8412  df=  56   with p =  0.07088
+Direct effect (c') of  GDP_Most_Recent  on  Poli_polarization  removing  Loneliness  =  0.2215   S.E. =  0.1107  t  =  2.0015  df=  55   with p =  0.05029
+Indirect effect (ab) of  GDP_Most_Recent  on  Poli_polarization  through  Loneliness   =  -0.0083 
+Mean bootstrapped indirect effect =  -0.0355  with standard error =  0.0728  Lower CI =  -0.2265    Upper CI =  0.0399
+R = 0.5918 R2 = 0.3503   F = 9.8838 on 3 and 55 DF   p-value:  4.2469e-06 
+
+
+ Full output  
+Call: psych::mediate(y = Poli_polarization ~ Third_pillar_size + (Loneliness) + 
+    GDP_Most_Recent, data = mediation_zscore)
+
+Direct effect estimates (traditional regression)    (c') X + M on Y 
+                  Poli_polarization   se     t df    Prob
+Intercept                      0.00 0.11  0.00 55 1.00000
+Third_pillar_size             -0.37 0.13 -2.89 55 0.00551
+GDP_Most_Recent                0.22 0.11  2.00 55 0.05030
+Loneliness                    -0.32 0.13 -2.52 55 0.01450
+
+R = 0.59 R2 = 0.35   F = 9.88 on 3 and 55 DF   p-value:  2.59e-05 
+
+ Total effect estimates (c) (X on Y) 
+                  Poli_polarization   se     t df     Prob
+Intercept                      0.00 0.11  0.00 56 1.00e+00
+Third_pillar_size             -0.52 0.12 -4.49 56 3.55e-05
+GDP_Most_Recent                0.21 0.12  1.84 56 7.09e-02
+
+ 'a'  effect estimates (X on M) 
+                  Loneliness   se    t df     Prob
+Intercept               0.00 0.12 0.00 56 1.000000
+Third_pillar_size       0.49 0.12 4.15 56 0.000113
+GDP_Most_Recent         0.03 0.12 0.22 56 0.825000
+
+ 'b'  effect estimates (M on Y controlling for X) 
+           Poli_polarization   se     t df   Prob
+Loneliness             -0.32 0.13 -2.52 55 0.0145
+
+ 'ab'  effect estimates (through all  mediators)
+                  Poli_polarization  boot   sd lower upper
+Third_pillar_size             -0.15 -0.15 0.07 -0.32 -0.03
+GDP_Most_Recent               -0.01 -0.04 0.07 -0.23  0.04
