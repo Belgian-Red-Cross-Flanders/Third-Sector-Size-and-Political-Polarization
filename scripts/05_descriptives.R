@@ -80,6 +80,47 @@ p_all <- plot_thirdpillar_vs_polarization(
 
 
 # 6) Income-group splits and plots ------------------------------------------
+upper_middle <- master %>% dplyr::filter(.data[[income_var]] %in% "Upper-middle income") %>%
+  dplyr::select(Country,
+                Third_pillar_size = Total_tpt,
+                Poli_polarization = Poli_polarization_pct)
+
+high <- master %>% dplyr::filter(.data[[income_var]] %in% "High income") %>%
+  dplyr::select(Country,
+                Third_pillar_size = Total_tpt,
+                Poli_polarization = Poli_polarization_pct)
+
+lower_middle <- master %>% dplyr::filter(.data[[income_var]] %in% "Lower-middle income") %>%
+  dplyr::select(Country,
+                Third_pillar_size = Total_tpt,
+                Poli_polarization = Poli_polarization_pct)
+
+low <- master %>% dplyr::filter(.data[[income_var]] %in% "Low income") %>%
+  dplyr::select(Country,
+                Third_pillar_size = Total_tpt,
+                Poli_polarization = Poli_polarization_pct)
+
+save_corr_matrix(
+  upper_middle,
+  here::here("outputs", "descriptives", "corr_upper_middle.xlsx")
+)
+
+save_corr_matrix(
+  high,
+  here::here("outputs", "descriptives", "corr_high_income.xlsx")
+)
+
+save_corr_matrix(
+  lower_middle,
+  here::here("outputs", "descriptives", "corr_lower_middle.xlsx")
+)
+
+save_corr_matrix(
+  low,
+  here::here("outputs", "descriptives", "corr_low_income.xlsx")
+)
+
+
 upper_high_levels <- c("Upper-middle income", "High income")
 lower_low_levels  <- c("Low income", "Lower-middle income")
 
@@ -166,6 +207,8 @@ sd(mediation$Facebook_users)
 sd(mediation$Loneliness)
 sd(mediation$Trust_ivs)
 
+writexl::write_xlsx(mediation, here::here("data_clean", "analysis_subsets", "mediation_dataset.xlsx"))
+
 descr_mediation <- psych::describe(mediation)
 descr_mediation$Variable <- rownames(descr_mediation); rownames(descr_mediation) <- NULL
 writexl::write_xlsx(descr_mediation,
@@ -220,7 +263,6 @@ dir.create(here::here("data_clean", "analysis_subsets"), showWarnings = FALSE, r
 saveRDS(polarization_all, here::here("data_clean", "analysis_subsets", "polarization_all.rds"))
 saveRDS(pol_upper,        here::here("data_clean", "analysis_subsets", "pol_upper.rds"))
 saveRDS(pol_lower,        here::here("data_clean", "analysis_subsets", "pol_lower.rds"))
-saveRDS(polarization_gdp, here::here("data_clean", "analysis_subsets", "polarization_gdp.rds"))
 
 saveRDS(mediation,        here::here("data_clean", "analysis_subsets", "mediation_dataset.rds"))
 saveRDS(mediation_z,      here::here("data_clean", "analysis_subsets", "mediation_dataset_z.rds"))

@@ -25,6 +25,33 @@ polarization_gdp <- readRDS(here::here("data_clean", "analysis_subsets", "polari
 # upper+high mediation table:
 med_uh           <- readRDS(here::here("data_clean", "analysis_subsets", "mediation_dataset.rds"))
 
+# Separate income groups
+pol_high <- polarization_all %>% dplyr::filter(World_bank_income_group == "High income")
+pol_upper_middle <- polarization_all %>% dplyr::filter(World_bank_income_group == "Upper-middle income")
+pol_lower_middle <- polarization_all %>% dplyr::filter(World_bank_income_group == "Lower-middle income")
+pol_low <- polarization_all %>% dplyr::filter(World_bank_income_group == "Low income")
+
+
+# Original TPT dataset countries (those with original data, not extrapolated)
+
+complete_51_countries <- c(
+  "Egypt", "India", "Kenya", "Pakistan", "Philippines", "Uganda",
+  "Argentina", "Australia", "Austria", "Belgium", "Brazil", "Bulgaria",
+  "Canada", "Chile", "Colombia", "Croatia", "Cyprus", "Czechia",
+  "Denmark", "Estonia", "Finland", "France", "Germany", "Greece",
+  "Hungary", "Ireland", "Israel", "Italy", "Japan", "Republic of Korea", "Latvia",
+  "Lithuania", "Luxembourg", "Mexico", "Netherlands", "New Zealand",
+  "Norway", "Peru", "Poland", "Portugal", "Romania", "Russian Federation",
+  "Slovakia", "Slovenia", "South Africa", "Spain", "Sweden",
+  "Switzerland", "Turkey", "United Kingdom of Great Britain and Northern Ireland", "United States of America"
+)
+
+pol_51 <- polarization_all %>%
+  dplyr::filter(Country %in% complete_51_countries)
+
+
+
+
 # 2) Helper: fit model, run diagnostics, export everything --------------------
 # + AUTOMATIC INTERPRETATION
 save_model_outputs <- function(model, name_prefix, data_used) {
@@ -221,6 +248,7 @@ save_model_outputs <- function(model, name_prefix, data_used) {
   invisible(TRUE)
 }
 
+
 # 3) Core regressions ---------------------------------------------------------
 
 # A1) All incomes: Poli_polarization ~ Third_pillar_size
@@ -255,6 +283,36 @@ add_and_fit <- function(varname, nice) {
   m <- lm(f, data = df)
   save_model_outputs(m, paste0("C_", nice, "_UH"), df)
 }
+
+# 6) 51 non-inputed countries
+if (nrow(pol_51) >= 3) {
+  m_51 <- lm(Poli_polarization ~ Third_pillar_size, data = pol_51)
+  save_model_outputs(m_51, "D1_full_51countries", pol_51)
+}
+
+# 7) Individual income groups
+
+if (nrow(pol_high) >= 3) {
+  m_high <- lm(Poli_polarization ~ Third_pillar_size, data = pol_high)
+  save_model_outputs(m_high, "D2_high_income", pol_high)
+}
+
+if (nrow(pol_upper_middle) >= 3) {
+  m_upmid <- lm(Poli_polarization ~ Third_pillar_size, data = pol_upper_middle)
+  save_model_outputs(m_upmid, "D3_upper_middle_income", pol_upper_middle)
+}
+
+if (nrow(pol_lower_middle) >= 3) {
+  m_lowmid <- lm(Poli_polarization ~ Third_pillar_size, data = pol_lower_middle)
+  save_model_outputs(m_lowmid, "D4_lower_middle_income", pol_lower_middle)
+}
+
+if (nrow(pol_low) >= 3) {
+  m_low <- lm(Poli_polarization ~ Third_pillar_size, data = pol_low)
+  save_model_outputs(m_low, "D5_low_income", pol_low)
+}
+
+
 
 add_and_fit("Trust_ivs",      "trust")
 add_and_fit("Gini_index",     "gini")

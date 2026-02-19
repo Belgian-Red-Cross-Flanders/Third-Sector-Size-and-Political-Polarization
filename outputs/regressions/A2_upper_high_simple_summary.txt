@@ -23,7 +23,7 @@ F-statistic: 15.39 on 1 and 71 DF,  p-value: 0.0001995
 === DIAGNOSTICS ===
 [1] "Shapiro-Wilk p = 0.2009"
  lag Autocorrelation D-W Statistic p-value
-   1      0.07080301      1.812756   0.418
+   1      0.07080301      1.812756    0.43
  Alternative hypothesis: rho != 0
 
 	studentized Breusch-Pagan test

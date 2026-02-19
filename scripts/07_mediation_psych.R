@@ -45,7 +45,7 @@ trust <- psych::mediate(
 save_psych_med(trust, "trust")
 
 trust_gdp <- psych::mediate(
-  Poli_polarization ~ Third_pillar_size + (Trust_ivs) + GDP_Most_Recent,
+  Poli_polarization ~ Third_pillar_size + (Trust_ivs) + (GDP_Most_Recent),
   data = mediation_zscore
 )
 save_psych_med(trust_gdp, "trust_gdp")
@@ -60,7 +60,7 @@ gini <- psych::mediate(
 save_psych_med(gini, "gini")
 
 gini_gdp <- psych::mediate(
-  Poli_polarization ~ Third_pillar_size + (Gini_index) + GDP_Most_Recent,
+  Poli_polarization ~ Third_pillar_size + (Gini_index) + (GDP_Most_Recent),
   data = mediation_zscore
 )
 save_psych_med(gini_gdp, "gini_gdp")
@@ -75,7 +75,7 @@ facebookusers <- psych::mediate(
 save_psych_med(facebookusers, "facebookusers")
 
 facebookusers_gdp <- psych::mediate(
-  Poli_polarization ~ Third_pillar_size + (Facebook_users) + GDP_Most_Recent,
+  Poli_polarization ~ Third_pillar_size + (Facebook_users) + (GDP_Most_Recent),
   data = mediation_zscore
 )
 save_psych_med(facebookusers_gdp, "facebookusers_gdp")
@@ -90,7 +90,7 @@ loneliness <- psych::mediate(
 save_psych_med(loneliness, "loneliness")
 
 lonelieness_gdp <- psych::mediate(
-  Poli_polarization ~ Third_pillar_size + (Loneliness) + GDP_Most_Recent,
+  Poli_polarization ~ Third_pillar_size + (Loneliness) + (GDP_Most_Recent),
   data = mediation_zscore
 )
 save_psych_med(lonelieness_gdp, "lonelieness_gdp")

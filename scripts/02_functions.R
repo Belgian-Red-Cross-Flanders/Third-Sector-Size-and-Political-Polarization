@@ -47,6 +47,39 @@ ess_country_lookup <- c(
 
 # Functions
 
+only_numeric <- function(df) {
+  df[, sapply(df, is.numeric), drop = FALSE]
+}
+
+save_corr_matrix <- function(df, outfile) {
+  # Remove NAs
+  df_clean <- stats::na.omit(df)
+  
+  # Keep only numeric variables
+  num_df <- only_numeric(df_clean)
+  
+  # Only compute correlation if at least 2 numeric vars
+  if (ncol(num_df) >= 2) {
+    cor_m <- psych::corr.test(
+      num_df,
+      use   = "pairwise",
+      method = "pearson"
+    )
+    
+    writexl::write_xlsx(
+      list(
+        "cor_matrix" = as.data.frame(cor_m$r),
+        "p_values"   = as.data.frame(cor_m$p)
+      ),
+      outfile
+    )
+    
+    message("✓ Saved correlation matrix to: ", outfile)
+  } else {
+    warning("Not enough numeric columns to compute correlations.")
+  }
+}
+
 #' Reads the excel file with manual country name corrections. This file should be located in the data_raw 
 #' folder of the project and must contain at least 2 cols:
 #' original (incorrect name)
@@ -121,24 +154,7 @@ wvs_select_vars <- function(df) {
     dplyr::rename(Country = B_COUNTRY_ALPHA) %>%
     dplyr::select(
       A_YEAR, A_WAVE, Country, 
-      Q1, #Important in life: family, 1 = very important, 2 = rather important, 3 = not very important, 4 = not at all important
-      Q2, #Important in life: friends, 1 = very important, 2 = rather important, 3 =  not very important, 4 = not at all important
-      Q4, #Important in life: politics, 1 = very important, 2 = rather important, 3 = not very important, 4 = not at all important 
-      Q6, #Important in life: religion, 1 = very important, 2, = rather important, 3 = not very important, 4 = not at all important 
-      Q72, #Confidence: the political parties, 1 = a great deal, 2, quite a lot, 3 = not very much, 4 = none at all
-      Q73, #Confidence: parliament, 1 = a great deal, 2, quite a lot, 3 = not very much, 4 = none at all
-      Q76, #Confidence: election, 1 = a great deal, 2, quite a lot, 3 = not very much, 4 = none at all
-      Q98, #Active/inactive membership in political party, 0 = not a member, 1 = inactive member, 2 = active member 
-      Q98R, #Membership in political party recoded, 0 = not mentioned, 1 = mentioned 
-      Q207, #Information source: Social media, 1 = daily, 2 = weekly, 3 = monthly, 4 = less than monthly, 5 = never
-      Q217, #Political actions online: Searching information about politics and political events, 1 = Have done, 2 = Might do, 3 = Would never do 
-      Q12, #Important child qualities - tolerance and respect for other people, 1 = important, 2 = not mentioned 
-      Q46, #Feeling of happiness, 1 = very happy, 2 = quite happy, 3 = not very happy, 4 = not at all happy
-      Q49, #Satisfaction with your life, 1 = completely dissatisfied, 10 = completely satisfied
       Q57, #Most people can be trusted, 1 = most people can be trusted, 2 = need to be very careful 
-      Q71, #Confidence in the government, 1 = A great deal, 2 = quite a lot, 3 = not very much, 4 = none at all
-      Q106, #Income equality vs larger income differences, 1 = Incomes more equal, 10 = larger income differences 
-      
     )
 }
 
@@ -155,42 +171,10 @@ wvs_select_vars <- function(df) {
 wvs_recode_values <- function(df) {
   df %>%
     dplyr::rename(
-      Family_importance = Q1,
-      Friends_importance = Q2, 
-      Politics_importance = Q4,
-      Religion_importance = Q6,
-      Tolerance_respect_others = Q12,
-      Feeling_happiness = Q46,
-      Satisfaction_life = Q49,
       Trust_people = Q57,
-      Confidence_government = Q71,
-      Confidence_political_parties = Q72,
-      Confidence_parliament = Q73,
-      Confidence_elections = Q76,
-      Active_member = Q98,
-      Member_political_party = Q98R,
-      Income_equality = Q106,
-      Info_social_media = Q207,
-      Online_actions = Q217
     ) %>%
     dplyr::mutate(
-      Tolerance_respect_others = dplyr::if_else(Tolerance_respect_others %in% c(1,2), Tolerance_respect_others, NA_integer_),
-      Feeling_happiness = dplyr::if_else(Feeling_happiness %in% 1:4, Feeling_happiness, NA_integer_),
-      Satisfaction_life = dplyr::if_else(Satisfaction_life %in% 1:10, Satisfaction_life, NA_integer_),
       Trust_people = dplyr::if_else(Trust_people %in% c(1,2), Trust_people, NA_integer_),
-      Confidence_government = dplyr::if_else(Confidence_government %in% 1:4, Confidence_government, NA_integer_),
-      Income_equality = dplyr::if_else(Income_equality %in% 1:10, Income_equality, NA_integer_),
-      Family_importance = dplyr::if_else(Family_importance %in% 1:4, Family_importance, NA_integer_),
-      Friends_importance = dplyr::if_else(Friends_importance %in% 1:4, Friends_importance, NA_integer_),
-      Politics_importance = dplyr::if_else(Politics_importance %in% 1:4, Politics_importance, NA_integer_),
-      Religion_importance = dplyr::if_else(Religion_importance %in% 1:4, Religion_importance, NA_integer_),
-      Confidence_political_parties = dplyr::if_else(Confidence_political_parties %in% 1:4, Confidence_political_parties, NA_integer_),
-      Confidence_parliament = dplyr::if_else(Confidence_parliament %in% 1:4, Confidence_parliament, NA_integer_),
-      Confidence_elections = dplyr::if_else(Confidence_elections %in% 1:4, Confidence_elections, NA_integer_),
-      Active_member = dplyr::if_else(Active_member %in% 0:2, Active_member, NA_integer_),
-      Member_political_parties = dplyr::if_else(Member_political_party %in% c(0,1), Member_political_party, NA_integer_),
-      Info_social_media = dplyr::if_else(Info_social_media %in% 1:5, Info_social_media, NA_integer_),
-      Online_actions = dplyr::if_else(Online_actions %in% 1:3, Online_actions, NA_integer_)
     )
 }
 
@@ -207,44 +191,11 @@ wvs_aggregate_means <- function(df) {
   df %>%
     dplyr::group_by(A_YEAR, A_WAVE, Country) %>%
     dplyr::summarise(
-      Tolerance_respect_others = mean(Tolerance_respect_others, na.rm = TRUE),
-      Feeling_happiness = mean(Feeling_happiness, na.rm = TRUE),
-      Satisfaction_life = mean(Satisfaction_life, na.rm = TRUE),
       Trust_people = mean(Trust_people, na.rm = TRUE),
-      Confidence_government = mean(Confidence_government, na.rm = TRUE),
-      Income_equality = mean(Income_equality, na.rm = TRUE),
-      Family_importance = mean(Family_importance, na.rm = TRUE),
-      Friends_importance = mean(Friends_importance, na.rm = TRUE), 
-      Politics_importance = mean(Politics_importance, na.rm = TRUE), 
-      Religion_importance = mean(Religion_importance, na.rm = TRUE),
-      Confidence_political_parties = mean(Confidence_political_parties, na.rm = TRUE),
-      Confidence_parliament = mean(Confidence_parliament, na.rm = TRUE),
-      Confidence_elections = mean(Confidence_elections, na.rm = TRUE), 
-      Info_social_media = mean(Info_social_media, na.rm = TRUE),
-      Online_actions = mean(Online_actions, na.rm = TRUE),
       .groups="drop"
     )
 }
 
-
-#' Compute tolerance percentage (WVS)
-#'
-#' Calculates the share of respondents who selected the most tolerant
-#' response (value 1) among all valid tolerance responses (1 or 2).
-#'
-#' @param df A WVS data frame with the variable `Tolerance_respect_others`.
-#'
-#' @return A data frame with percentage tolerance per country-year.
-wvs_tolerance <- function(df) {
-  df %>%
-    dplyr::group_by(A_YEAR, Country) %>%
-    dplyr::summarise(
-      total_ones = sum(Tolerance_respect_others == 1, na.rm = TRUE),
-      total_ones_and_twos = sum(Tolerance_respect_others %in% c(1,2), na.rm = TRUE),
-      Percentage_tolerance = (total_ones / total_ones_and_twos) * 100,
-      .groups="drop"
-    )
-}
 
 
 #' Compute trust percentage (WVS)
@@ -266,69 +217,11 @@ wvs_trust <- function(df) {
     )
 }
 
-
-#' Compute political party membership percentages (WVS)
-#'
-#' Calculates the share of active members (value 2) and total members
-#' (values 1 or 2) relative to all valid responses for political party
-#' membership.
-#'
-#' @param df A WVS data frame containing the variable `Active_member`.
-#'
-#' @return A data frame with membership percentages per country-year.
-wvs_active_member <- function(df) {
-  df %>%
-    dplyr::group_by(A_YEAR, Country) %>%
-    dplyr::summarise(
-      total_active = sum(Active_member == 2, na.rm = TRUE),
-      total_member = sum(Active_member %in% c(1,2), na.rm = TRUE),
-      total_all = sum(Active_member %in% c(0,1,2), na.rm = TRUE),
-      Percentage_active_members = (total_active / total_all) * 100,
-      Percentage_members = (total_member / total_all) * 100,
-      .groups="drop"
-    )
-}
-
-
-#' Compute political party membership percentage (WVS)
-#'
-#' Calculates the share of respondents who report being members of a
-#' political party (value 1) among all valid responses (0 or 1).
-#'
-#' @param df A WVS data frame containing `Member_political_party`.
-#'
-#' @return A data frame with political party membership percentages per country-year.
-wvs_member_political_party <- function(df) {
-  df %>%
-    dplyr::group_by(A_YEAR, Country) %>%
-    dplyr::summarise(
-      total_ones = sum(Member_political_party == 1, na.rm = TRUE),
-      total_zeroes_and_ones = sum(Member_political_party %in% c(0,1), na.rm = TRUE),
-      Percentage_poli_members = (total_ones / total_zeroes_and_ones) * 100,
-      .groups="drop"
-    )
-}
-
-
-#' Combine all WVS aggregate datasets
-#'
-#' Merges mean values, tolerance, trust, active membership, and party 
-#' membership aggregates into a single country-year dataset.
-#'
-#' @param wvs_mean Data frame of mean WVS variables.
-#' @param tol Data frame with tolerance percentages.
-#' @param trust Data frame with trust percentages.
-#' @param active Data frame with active/total membership percentages.
-#' @param party Data frame with political party membership percentages.
-#'
-#' @return A merged data frame containing all WVS aggregates.
-wvs_combine_aggregates <- function(wvs_mean, tol, trust, active, party) {
+wvs_combine_aggregates <- function(wvs_mean, trust) {
   wvs_mean %>%
-    dplyr::left_join(tol,    by = c("Country", "A_YEAR")) %>%
-    dplyr::left_join(trust,  by = c("Country", "A_YEAR")) %>%
-    dplyr::left_join(active, by = c("Country", "A_YEAR")) %>%
-    dplyr::left_join(party,  by = c("Country", "A_YEAR"))
+    dplyr::left_join(trust,  by = c("Country", "A_YEAR"))
 }
+
 
 
 #' Combine Great Britain and Northern Ireland into UK
@@ -350,23 +243,7 @@ wvs_combine_uk <- function(df) {
   uk <- dplyr::mutate(
     gb,
     Country = "United Kingdom of Great Britain and Northern Ireland",
-    Feeling_happiness            = (gb$Feeling_happiness + ni$Feeling_happiness) / 2,
-    Satisfaction_life            = (gb$Satisfaction_life + ni$Satisfaction_life) / 2,
-    Confidence_government        = (gb$Confidence_government + ni$Confidence_government) / 2,
-    Income_equality              = (gb$Income_equality + ni$Income_equality) / 2,
-    Percentage_tolerance         = (gb$Percentage_tolerance + ni$Percentage_tolerance) / 2,
     Percentage_trust             = (gb$Percentage_trust + ni$Percentage_trust) / 2,
-    Family_importance            = (gb$Family_importance + ni$Family_importance) / 2,
-    Friends_importance           = (gb$Friends_importance + ni$Friends_importance) / 2,
-    Politics_importance          = (gb$Politics_importance + ni$Politics_importance) / 2,
-    Religion_importance          = (gb$Religion_importance + ni$Religion_importance) / 2,
-    Confidence_political_parties = (gb$Confidence_political_parties + ni$Confidence_political_parties) / 2,
-    Confidence_parliament        = (gb$Confidence_parliament + ni$Confidence_parliament) / 2,
-    Confidence_elections         = (gb$Confidence_elections + ni$Confidence_elections) / 2,
-    Info_social_media            = (gb$Info_social_media + ni$Info_social_media) / 2,
-    Percentage_active_members    = (gb$Percentage_active_members + ni$Percentage_active_members) / 2,
-    Percentage_members           = (gb$Percentage_members + ni$Percentage_members) / 2,
-    Percentage_poli_members      = (gb$Percentage_poli_members + ni$Percentage_poli_members) / 2
   )
   
   df %>%

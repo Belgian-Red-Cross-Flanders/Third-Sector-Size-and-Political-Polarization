@@ -8,7 +8,7 @@ The DV (Y) was  Poli_polarization . The IV (X) was  Third_pillar_size . The medi
 Total effect(c) of  Third_pillar_size  on  Poli_polarization  =  -0.4808   S.E. =  0.1161  t  =  -4.1396  df=  57   with p =  0.0001161
 Direct effect (c') of  Third_pillar_size  on  Poli_polarization  removing  Loneliness  =  -0.328   S.E. =  0.1284  t  =  -2.554  df=  56   with p =  0.0134
 Indirect effect (ab) of  Third_pillar_size  on  Poli_polarization  through  Loneliness   =  -0.1528 
-Mean bootstrapped indirect effect =  -0.1544  with standard error =  0.0759  Lower CI =  -0.3184    Upper CI =  -0.0222
+Mean bootstrapped indirect effect =  -0.1554  with standard error =  0.0764  Lower CI =  -0.3197    Upper CI =  -0.0193
 R = 0.5504 R2 = 0.303   F = 12.1696 on 2 and 56 DF   p-value:  3.0697e-06 
 
 
@@ -40,4 +40,4 @@ Loneliness             -0.31 0.13 -2.4 56 0.0197
 
  'ab'  effect estimates (through all  mediators)
                   Poli_polarization  boot   sd lower upper
-Third_pillar_size             -0.15 -0.15 0.08 -0.32 -0.02
+Third_pillar_size             -0.15 -0.16 0.08 -0.32 -0.02

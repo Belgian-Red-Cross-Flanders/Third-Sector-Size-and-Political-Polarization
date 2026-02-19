@@ -1,0 +1,51 @@
+
+=== MODEL SUMMARY ===
+
+Call:
+lm(formula = Poli_polarization ~ Third_pillar_size, data = pol_lower_middle)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-27.232  -9.865  -3.163  10.416  33.700 
+
+Coefficients:
+                  Estimate Std. Error t value Pr(>|t|)    
+(Intercept)         72.394      6.910  10.477 7.16e-12 ***
+Third_pillar_size   -3.469      2.093  -1.658    0.107    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 16.12 on 32 degrees of freedom
+Multiple R-squared:  0.07907,	Adjusted R-squared:  0.05029 
+F-statistic: 2.748 on 1 and 32 DF,  p-value: 0.1072
+
+
+=== DIAGNOSTICS ===
+[1] "Shapiro-Wilk p = 0.3613"
+ lag Autocorrelation D-W Statistic p-value
+   1      -0.0427797      1.983544   0.922
+ Alternative hypothesis: rho != 0
+
+	studentized Breusch-Pagan test
+
+data:  model
+BP = 1.1164, df = 1, p-value = 0.2907
+
+
+
+=== AUTOMATIC INTERPRETATION ===
+Main predictor: Third_pillar_size
+Effect size: -3.469 (a very strong effect)
+Interpretation: A one-unit increase in Third_pillar_size is associated with a 3.469-point change in the outcome.
+Direction: The predictor decreases the outcome.
+Significance: The effect is not statistically significant (p ≥ 0.05).
+R-squared: The model explains 7.9% of variance.
+
+=== ASSUMPTION CHECKS ===
+- Normality: Residuals appear normally distributed (Shapiro p > 0.05).
+- Independence: Residuals show no evidence of autocorrelation (DW = 1.984).
+- Homoscedasticity: No evidence of heteroscedasticity (BP p > 0.05).
+
+--------------------------------------------
+If all assumptions are met: coefficients, SEs, and p-values are trustworthy.
+If assumptions are violated: consider robust SEs, transformations, or alternative models.

@@ -1,52 +1,54 @@
 
 Mediation/Moderation Analysis 
 Call: psych::mediate(y = Poli_polarization ~ Third_pillar_size + (Trust_ivs) + 
-    GDP_Most_Recent, data = mediation_zscore)
+    (GDP_Most_Recent), data = mediation_zscore)
 
-The DV (Y) was  Poli_polarization . The IV (X) was  Third_pillar_size GDP_Most_Recent . The mediating variable(s) =  Trust_ivs .
+The DV (Y) was  Poli_polarization . The IV (X) was  Third_pillar_size . The mediating variable(s) =  Trust_ivs GDP_Most_Recent .
 
-Total effect(c) of  Third_pillar_size  on  Poli_polarization  =  -0.5204   S.E. =  0.1158  t  =  -4.4943  df=  56   with p =  3.549e-05
-Direct effect (c') of  Third_pillar_size  on  Poli_polarization  removing  Trust_ivs  =  -0.3546   S.E. =  0.13  t  =  -2.7265  df=  55   with p =  0.00857
-Indirect effect (ab) of  Third_pillar_size  on  Poli_polarization  through  Trust_ivs   =  -0.1659 
-Mean bootstrapped indirect effect =  -0.1613  with standard error =  0.0816  Lower CI =  -0.3376    Upper CI =  -0.0177
-
-Total effect(c) of  GDP_Most_Recent  on  Poli_polarization  =  0.2132   S.E. =  0.1158  t  =  1.8412  df=  56   with p =  0.07088
-Direct effect (c') of  GDP_Most_Recent  on  Poli_polarization  removing  Trust_ivs  =  0.2299   S.E. =  0.1112  t  =  2.0675  df=  55   with p =  0.0434
-Indirect effect (ab) of  GDP_Most_Recent  on  Poli_polarization  through  Trust_ivs   =  -0.0166 
-Mean bootstrapped indirect effect =  -0.0429  with standard error =  0.0786  Lower CI =  -0.2514    Upper CI =  0.0385
+Total effect(c) of  Third_pillar_size  on  Poli_polarization  =  -0.4808   S.E. =  0.1161  t  =  -4.1396  df=  57   with p =  0.0001161
+Direct effect (c') of  Third_pillar_size  on  Poli_polarization  removing  Trust_ivs GDP_Most_Recent  =  -0.3546   S.E. =  0.13  t  =  -2.7265  df=  55   with p =  0.00857
+Indirect effect (ab) of  Third_pillar_size  on  Poli_polarization  through  Trust_ivs GDP_Most_Recent   =  -0.1262 
+Mean bootstrapped indirect effect =  -0.1176  with standard error =  0.0813  Lower CI =  -0.2857    Upper CI =  0.0465
 R = 0.5884 R2 = 0.3462   F = 9.7062 on 3 and 55 DF   p-value:  5.1756e-06 
 
 
  Full output  
 Call: psych::mediate(y = Poli_polarization ~ Third_pillar_size + (Trust_ivs) + 
-    GDP_Most_Recent, data = mediation_zscore)
+    (GDP_Most_Recent), data = mediation_zscore)
 
 Direct effect estimates (traditional regression)    (c') X + M on Y 
                   Poli_polarization   se     t df    Prob
 Intercept                      0.00 0.11  0.00 55 1.00000
 Third_pillar_size             -0.35 0.13 -2.73 55 0.00857
-GDP_Most_Recent                0.23 0.11  2.07 55 0.04340
 Trust_ivs                     -0.32 0.13 -2.45 55 0.01770
+GDP_Most_Recent                0.23 0.11  2.07 55 0.04340
 
 R = 0.59 R2 = 0.35   F = 9.71 on 3 and 55 DF   p-value:  3.07e-05 
 
  Total effect estimates (c) (X on Y) 
                   Poli_polarization   se     t df     Prob
-Intercept                      0.00 0.11  0.00 56 1.00e+00
-Third_pillar_size             -0.52 0.12 -4.49 56 3.55e-05
-GDP_Most_Recent                0.21 0.12  1.84 56 7.09e-02
+Intercept                      0.00 0.12  0.00 57 1.000000
+Third_pillar_size             -0.48 0.12 -4.14 57 0.000116
 
  'a'  effect estimates (X on M) 
-                  Trust_ivs   se    t df     Prob
-Intercept              0.00 0.11 0.00 56 1.000000
-Third_pillar_size      0.52 0.11 4.57 56 0.000027
-GDP_Most_Recent        0.05 0.11 0.46 56 0.648000
+                  Trust_ivs   se    t df    Prob
+Intercept              0.00 0.11 0.00 57 1.0e+00
+Third_pillar_size      0.53 0.11 4.77 57 1.3e-05
+                  GDP_Most_Recent   se    t df  Prob
+Intercept                    0.00 0.13 0.00 57 1.000
+Third_pillar_size            0.19 0.13 1.43 57 0.158
 
  'b'  effect estimates (M on Y controlling for X) 
-          Poli_polarization   se     t df   Prob
-Trust_ivs             -0.32 0.13 -2.45 55 0.0177
+                Poli_polarization   se     t df   Prob
+Trust_ivs                   -0.32 0.13 -2.45 55 0.0177
+GDP_Most_Recent              0.23 0.11  2.07 55 0.0434
 
  'ab'  effect estimates (through all  mediators)
                   Poli_polarization  boot   sd lower upper
-Third_pillar_size             -0.17 -0.16 0.08 -0.34 -0.02
-GDP_Most_Recent               -0.02 -0.04 0.08 -0.25  0.04
+Third_pillar_size             -0.13 -0.12 0.08 -0.29  0.05
+
+ 'ab' effects estimates for each mediator for Poli_polarization 
+                                   boot   sd lower upper
+Third_pillar_size                 -0.12 0.08 -0.29  0.05
+Trust_ivs*Third_pillar_size       -0.17 0.08 -0.33 -0.02
+GDP_Most_Recent*Third_pillar_size  0.05 0.04 -0.02  0.13

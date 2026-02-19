@@ -8,7 +8,7 @@ The DV (Y) was  Poli_polarization . The IV (X) was  Third_pillar_size . The medi
 Total effect(c) of  Third_pillar_size  on  Poli_polarization  =  -0.4808   S.E. =  0.1161  t  =  -4.1396  df=  57   with p =  0.0001161
 Direct effect (c') of  Third_pillar_size  on  Poli_polarization  removing  Trust_ivs  =  -0.3206   S.E. =  0.1327  t  =  -2.4153  df=  56   with p =  0.01901
 Indirect effect (ab) of  Third_pillar_size  on  Poli_polarization  through  Trust_ivs   =  -0.1602 
-Mean bootstrapped indirect effect =  -0.1605  with standard error =  0.0852  Lower CI =  -0.3503    Upper CI =  -0.0073
+Mean bootstrapped indirect effect =  -0.1599  with standard error =  0.0852  Lower CI =  -0.3424    Upper CI =  -0.0055
 R = 0.5435 R2 = 0.2953   F = 11.7357 on 2 and 56 DF   p-value:  4.5186e-06 
 
 
@@ -40,4 +40,4 @@ Trust_ivs              -0.3 0.13 -2.26 56 0.0278
 
  'ab'  effect estimates (through all  mediators)
                   Poli_polarization  boot   sd lower upper
-Third_pillar_size             -0.16 -0.16 0.09 -0.35 -0.01
+Third_pillar_size             -0.16 -0.16 0.09 -0.34 -0.01
