@@ -37,11 +37,11 @@ regressions/mediation without regenerating data.
 │     ├─ facebook-users-by-country-2026.csv
 │     ├─ one-person-households.csv
 │     ├─ self-reported-trust-attitudes.csv
-│     └─ WVS_Cross-National_Wave_7_rData_v5_0.rdata
+│     └─ WVS_Cross-National_Wave_7_rData_v5_0.rdata -- WARNING: This file is too heavy to upload to GitHub. Please download it from https://www.worldvaluessurvey.org/WVSDocumentationWV7.jsp and save it to this folder.
 │  └─ Trust in Government/
 │     └─ OECD Trust in Government.xlsx
 │  └─ V-Dem-CY-FullOthers_csv_v13/
-│     └─ V-Dem-CY-Full+Others-v13.csv
+│     └─ V-Dem-CY-Full+Others-v13.csv -- WARNING: This file is too heavy to upload to GitHub. Please download it from https://www.v-dem.net/data/the-v-dem-dataset/ and save it to this folder.
 |
 ├─ data_clean/
 │  ├─ master_dataset.rds
